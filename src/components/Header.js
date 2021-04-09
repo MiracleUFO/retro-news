@@ -21,13 +21,13 @@ export const Header = () => {
           {state.burgerOpen ? 
             <span id='close-icon'onClick={(e) => {
             setState({...state, burgerOpen: false});
-            document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+            document.getElementsByTagName('body')[0].style.overflowY = 'visible';
             }}>X</span>
            
           :
             <img src={menu} id='menu-icon' alt='Menu icon' onClick={(e) => {
               setState({...state, burgerOpen: true}); 
-              document.getElementsByTagName('body')[0].style.overflowY = 'visible';
+              document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
             }} /> 
           }
         </div>

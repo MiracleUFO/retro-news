@@ -4,7 +4,9 @@ import { observer } from 'mobx-react-lite';
 import NotFound from './NotFound';
 import AsideLeft from './AsideLeft';
 import AsideRight from './AsideRight';
+import Comment from './Comment';
 import logo  from '../assets/imgs/logo.png';
+import comment from '../assets/imgs/comment.png';
 import '../assets/css/feed.css';
 import '../assets/css/details.css';
 import '../assets/css/error.css';
@@ -40,6 +42,9 @@ const Details = observer(function Details() {
             </div>
           </div>
         </div>
+
+        <a href ='#comment-container'><img src={comment} alt='Comment' id='comment-icon' /></a>
+        <Comment />
       </section>
       :
       <NotFound />

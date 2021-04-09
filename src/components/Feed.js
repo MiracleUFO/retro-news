@@ -57,6 +57,7 @@ const Feed = observer(function Feed() {
           easing: 'ease',
           autoplay: true,
           interval: 5000,
+          speed: 2000,
           rewind: true, 
           arrows: false,
           perPage: 1

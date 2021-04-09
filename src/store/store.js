@@ -6,7 +6,6 @@ import { observable } from 'mobx';
     selected: observable({}),
     index: null,
     articles: observable([]),
-    comments: observable([]),
    
     setSelected(index) {
       this.index = index;
@@ -15,10 +14,6 @@ import { observable } from 'mobx';
   
     addArticles(articles) {
       this.articles.replace(articles);
-    },
-  
-    addComment(comment) {
-      this.comments.push(comment)
     }
   }
 }

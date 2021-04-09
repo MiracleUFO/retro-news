@@ -6,6 +6,7 @@ import ComingSoon from './components/ComingSoon';
 import NotFound from './components/NotFound';
 
 const App = () => {
+  
   return (
       <div className="App">
       <Header />

@@ -1,0 +1,31 @@
+ #comment-container {
+  height: 15vh;
+  width: 70vw;
+  margin: 0 auto;
+ }
+
+form {
+  height: 70px;
+  text-align: center;
+}
+
+textarea {
+  border-radius: 6px;
+  height: 60px;
+  width: 100%;
+}
+
+button {
+  display: block;
+  background-color: peachpuff;
+  color: white;
+  padding: 2px;
+  font-weight: 900;
+  margin: 0 auto;
+  width: 100%;
+  border: none;
+}
+
+button:hover, .button-active {
+  background:#FA8072;
+}

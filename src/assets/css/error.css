@@ -1,0 +1,33 @@
+#error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+#error h1 {
+  font-family: 'Montserrat';
+}
+
+#error p {
+  font-family: 'Nunito';
+  font-size: 4.5vw;
+  text-align: center;
+}
+
+#error h1, #error p {
+  margin: 0.5vh 0;
+}
+
+#error a span {
+  color: #FA8072;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 750px) {
+  #error p {
+    font-size: 1.7vw;
+  }
+}
+

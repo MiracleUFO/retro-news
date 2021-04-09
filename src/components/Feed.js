@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import   { Context } from '../context';
+import { observer } from 'mobx-react-lite';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import AsideLeft from './AsideLeft';
 import AsideRight from './AsideRight';
@@ -9,10 +10,11 @@ import preloader from '../assets/imgs/preloader.gif';
 import '../assets/css/feed.css';
 
 
-const Feed = observer(({store}) => {
+const Feed = observer(function Feed() {
+  const store = useContext(Context);
 
   const [state, setState] = useState({
-    preloader: true,
+    loading: true,
     articles: []
   })
 
@@ -29,8 +31,8 @@ const Feed = observer(({store}) => {
         return;
       }
       response.json().then((data) => {
-        setState({...state, articles: [...data.response.results], preloader: false});
-        store.addArticles(...data.response.results);
+        setState({...state, articles: [...data.response.results], loading: false});
+        store.addArticles(data.response.results);
       });
     })
     .catch((err) => {
@@ -38,12 +40,18 @@ const Feed = observer(({store}) => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  let handleClick = (e) => {
+    e.preventDefault();
+    let index = Number(e.target.getAttribute('data-attribute-index'));
+    store.setSelected(index);
+  }
+
   return (
-    <main id={state.preloader ? 'flex' : 'home'}>
-      {state.preloader ? <img src={preloader} id='preloader' alt='Spinning wheel preloader' /> : null}
-      {state.preloader ? null : <AsideLeft />}
-      <NavLink to='/Details' id='feed-container'>
-        <Splide 
+    <main id={state.loading ? 'flex' : 'home'}>
+      {state.loading ? <img src={preloader} id='preloader' alt='Spinning wheel preloader' /> : null}
+      {state.loading ? null : <AsideLeft />} 
+      
+      <Splide 
         id='feed'
         options={{
           easing: 'ease',
@@ -56,31 +64,33 @@ const Feed = observer(({store}) => {
         >
           {state.articles.map((item, index) => {
 
-            let s = item.webPublicationDate.split('T')[0];
+            let str = item.webPublicationDate.split('T')[0];
             return (
-
               <SplideSlide key={index}>
-                <img src={item.fields.thumbnail} className='news-thumbnail' alt='News thumbnail' />
-                {index <= 5 ? <h2 className='pink-heading'>LATEST</h2> : null}
-                <h1>{item.fields.headline}</h1>
-                <p>{item.fields.trailText}... <span className='greyText'>see more</span></p>
+                <div data-attribute-index={index} onClick={handleClick}>
+                <NavLink to='/Details'>
+                    <img src={item.fields.thumbnail} className='news-thumbnail' alt='News thumbnail' data-attribute-index={index} />
+                    {index <= 5 ? <h2 className='pink-heading' data-attribute-index={index}>LATEST</h2> : null}
+                    <h1 data-attribute-index={index}>{item.fields.headline}</h1>
+                    <p data-attribute-index={index}>{item.fields.trailText}... <span className='greyText'data-attribute-index={index}>see more</span></p>
+                    
 
-                <div className='publication-deets'>
-                  <img src={logo} alt='Author' />
-                  <div>
-                    <h2>TheObserver</h2>
-                    <p>{s}</p>
-                  </div>
+                    <div className='publication-deets' data-attribute-index={index}>
+                      <img src={logo} alt='Author' data-attribute-index={index} />
+                      <div data-attribute-index={index}>
+                        <h2 data-attribute-index={index}>TheObserver</h2>
+                        <p data-attribute-index={index}>{str}</p>
+                      </div>
+                    </div>
+                </NavLink>
                 </div>
               </SplideSlide>
             ) ;
           })}
-        </Splide>
-      </NavLink>
-      {state.preloader ? null : <AsideRight />}
+      </Splide>
+      {state.loading ? null : <AsideRight />}
     </main>
   )
 })
-
 
 export default Feed;

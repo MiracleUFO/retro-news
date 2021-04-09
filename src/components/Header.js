@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import menu from '../assets/imgs/menu.png';
 import '../assets/css/header.css';
 
-export const Header = () => {
+const Header = () => {
   const [state, setState] = useState({
     burgerOpen: false
   })
@@ -58,3 +58,5 @@ export const Header = () => {
     </header>
   )
 }
+
+export default Header;

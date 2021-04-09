@@ -1,0 +1,46 @@
+.details h1, .details h2 {
+  font-family: 'Montserrat';
+  text-align: center;
+}
+
+.details p {
+  font-family: 'Nunito';
+}
+
+.details-container {
+ overflow-x: hidden;
+ position: static;
+}
+
+#article-body {
+  text-align: center;
+}
+
+#article-body img {
+  width: 100%;
+  max-height: 300px;
+}
+
+@media screen and (min-width: 750px) {
+  #article-body {
+    text-align: left;
+  }
+
+  #article-body img {
+    width: 95%;
+    max-height: 300px;
+  }
+
+  .details-container {
+    position: fixed;
+  }
+  
+  .details {
+    overflow-y: overlay;
+    height: 70vh;
+  }
+  
+  .details h1, .details h2, .details p {
+    margin: 1.5vh 10% 1.5vw !important;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import   { Context } from '../context';
 import { observer } from 'mobx-react-lite';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { Splide, SplideSlide} from '@splidejs/react-splide';
 import AsideLeft from './AsideLeft';
 import AsideRight from './AsideRight';
 import logo  from '../assets/imgs/logo.png';
@@ -51,44 +51,46 @@ const Feed = observer(function Feed() {
       {state.loading ? <img src={preloader} id='preloader' alt='Spinning wheel preloader' /> : null}
       {state.loading ? null : <AsideLeft />} 
       
-      <Splide 
-        id='feed'
-        options={{
-          easing: 'ease',
-          autoplay: true,
-          interval: 5000,
-          speed: 2000,
-          rewind: true, 
-          arrows: false,
-          perPage: 1
-        }}
-        >
-          {state.articles.map((item, index) => {
+      {state.loading ? null :
+      <Splide id='feed'
+        options={ {
+          autoplay : true,
+          interval : 3000,
+          speed : 500,
+          rewind : true,
+          rewindSpeed: 1500,
+          perPage : 1,
+          pauseOnHover : false,
+          pauseOnFocus : false, 
+          easing : 'ease',
+          gap    : '1rem',
+        } }
+      >
+        {state.articles.map((item, index) => {
+          let str = item.webPublicationDate.split('T')[0];
+          return (
+            <SplideSlide key={index}>
+              <div data-attribute-index={index} onClick={handleClick}>
+              <NavLink to='/Details'>
+                <img src={item.fields.thumbnail} className='news-thumbnail' alt='News thumbnail' data-attribute-index={index} />
+                {index <= 5 ? <h2 className='pink-heading' data-attribute-index={index}>LATEST</h2> : null}
+                <h1 data-attribute-index={index}>{item.fields.headline}</h1>
+                <p data-attribute-index={index}>{item.fields.trailText}... <span className='greyText'data-attribute-index={index}>see more</span></p>
+                
 
-            let str = item.webPublicationDate.split('T')[0];
-            return (
-              <SplideSlide key={index}>
-                <div data-attribute-index={index} onClick={handleClick}>
-                <NavLink to='/Details'>
-                    <img src={item.fields.thumbnail} className='news-thumbnail' alt='News thumbnail' data-attribute-index={index} />
-                    {index <= 5 ? <h2 className='pink-heading' data-attribute-index={index}>LATEST</h2> : null}
-                    <h1 data-attribute-index={index}>{item.fields.headline}</h1>
-                    <p data-attribute-index={index}>{item.fields.trailText}... <span className='greyText'data-attribute-index={index}>see more</span></p>
-                    
-
-                    <div className='publication-deets' data-attribute-index={index}>
-                      <img src={logo} alt='Author' data-attribute-index={index} />
-                      <div data-attribute-index={index}>
-                        <h2 data-attribute-index={index}>TheObserver</h2>
-                        <p data-attribute-index={index}>{str}</p>
-                      </div>
-                    </div>
-                </NavLink>
+                <div className='publication-deets' data-attribute-index={index}>
+                  <img src={logo} alt='Author' data-attribute-index={index} />
+                  <div data-attribute-index={index}>
+                    <h2 data-attribute-index={index}>TheObserver</h2>
+                    <p data-attribute-index={index}>{str}</p>
+                  </div>
                 </div>
-              </SplideSlide>
-            ) ;
-          })}
-      </Splide>
+              </NavLink>
+              </div>
+            </SplideSlide>
+          ) ;
+        })}
+      </Splide>}
       {state.loading ? null : <AsideRight />}
     </main>
   )

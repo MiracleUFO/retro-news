@@ -28,7 +28,7 @@ const Comment = observer(function Comment() {
     e.preventDefault();
     if(state.commentVal) {
       let commentArr = [...state.comments, state.commentVal]
-      setState({...state, comments: commentArr}); 
+      setState({...state, comments: commentArr, commentVal: ''}); 
     }
   }
 

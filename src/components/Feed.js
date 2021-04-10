@@ -19,7 +19,7 @@ const Feed = observer(function Feed() {
   })
 
   useEffect(() => {
-    fetch("http://content.guardianapis.com/search?tag=lifeandstyle/fashion&from-date=2012-01-01&to-date=2021-04-07&order-by=newest&show-fields=all&page-size=200&api-key=4fbea54e-0e35-4618-a685-1813a4ab34b3", {
+    fetch("https://content.guardianapis.com/search?tag=lifeandstyle/fashion&from-date=2012-01-01&to-date=2021-04-07&order-by=newest&show-fields=all&page-size=200&api-key=4fbea54e-0e35-4618-a685-1813a4ab34b3", {
       "method": "GET",
       "headers": {
       "content-type": "application/x-www-form-urlencoded",

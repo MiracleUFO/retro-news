@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import firebase from 'firebase';
+import firebase from 'firebase';
 import { StoreProvider } from './context';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 
-/*const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCBwFamUB9H6vjgCh0bI7qT_xVmN3HhZTA",
   authDomain: "retro-news-7331e.firebaseapp.com",
   projectId: "retro-news-7331e",
@@ -19,7 +19,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-*/
+
 
 ReactDOM.render(
   <React.StrictMode>

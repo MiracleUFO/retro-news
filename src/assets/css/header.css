@@ -40,13 +40,13 @@ header a {
 
 #burger-container {
   background: white;
-  height: 80vh;
+  height: 83vh;
   display: flex;
   align-items: center;
 }
 
 #burger-container h1 {
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: 600;
 }
 

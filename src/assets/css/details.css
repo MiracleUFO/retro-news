@@ -1,4 +1,4 @@
-.details h1, .details h2 {
+.details h1 {
   font-family: 'Montserrat';
   text-align: center;
 }
@@ -25,6 +25,7 @@
   position: fixed;
   right: 5vw;
   bottom: 10vh;
+  width: auto;
 }
 
 @media screen and (min-width: 750px) {

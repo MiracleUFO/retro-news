@@ -35,7 +35,6 @@ a:-webkit-any-link  {
   display: flex;
   width: 40vw;
   position: relative;
-  left: -6vw;
 }
 
 .publication-deets img {

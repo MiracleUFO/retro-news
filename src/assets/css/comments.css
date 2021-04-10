@@ -1,8 +1,26 @@
  #comment-container {
-  height: 15vh;
-  width: 70vw;
-  margin: 0 auto;
+  height: -webkit-fill-available;
+    display: flex;
+    width: 70vw;
+    padding-bottom: 10vh;
+    flex-direction: column;
+    margin: 0 auto;
  }
+
+#comment-container h1 {
+  margin-bottom: 0.8vh !important;
+    font-family: 'Montserrat';
+    text-align: revert;
+}
+
+#comment-container li, #comment-container span {
+  font-family: 'Nunito';
+}
+
+#comment-container span {
+  font-size: 0.8em;
+  color: #777;
+}
 
 form {
   height: 70px;
@@ -19,13 +37,37 @@ button {
   display: block;
   background-color: peachpuff;
   color: white;
-  padding: 2px;
+  padding: 5px 2px;
+  font-family: 'Nunito';
   font-weight: 900;
   margin: 0 auto;
   width: 100%;
   border: none;
+  cursor: pointer;
 }
 
 button:hover, .button-active {
   background:#FA8072;
+}
+
+li {
+  padding-top: 5px;
+}
+
+ul {
+  padding-bottom: 20px;
+}
+
+#comments li > p {
+  width: 70%;
+  margin: 0 !important;
+  overflow-wrap: break-word;
+}
+
+@media screen and (min-width: 750px) {
+  #comment-container {
+    height: auto;
+    width: 70%;
+    padding-top: 5vh;
+  }
 }

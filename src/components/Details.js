@@ -20,7 +20,7 @@ const Details = observer(function Details() {
       document.getElementById('article-body').innerHTML = store.selected.fields.body;
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
+  
 
   let str = store.selected.fields  ? store.selected.webPublicationDate.split('T')[0] : '';
 
@@ -41,10 +41,10 @@ const Details = observer(function Details() {
               <p>{str}</p>
             </div>
           </div>
+          <Comment />
         </div>
 
         <a href ='#comment-container'><img src={comment} alt='Comment' id='comment-icon' /></a>
-        <Comment />
       </section>
       :
       <NotFound />

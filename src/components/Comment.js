@@ -9,16 +9,15 @@ const Comment = observer(function Comment() {
 
   const [state, setState] = useState({
     id: store.index,
-    commentVal: '',
-    comments: []
-  })
+    comments: [],
+    commentVal: ''
+  });
 
   useEffect(() => {
-    /*if(state.comments.length !== 0) {
-      let li = `<li>${state.comments[state.comments.lenght - 1]}</li>`;
-      console.log(state.comments, li, state.comments[state.comments.lenght - 1]);
-      document.getElementById('comments').appendChild(li)
-    }*/
+    if(state.comments.length !== 0) {
+      let li = `<li><p>${state.comments[state.comments.length - 1]}</p><span>Anonymous</span></li>`;
+      document.getElementById('comments').innerHTML =  document.getElementById('comments').innerHTML + li;
+    }
   }, [state.comments])
 
   let handleChange = (e) => {
@@ -28,7 +27,8 @@ const Comment = observer(function Comment() {
   let handleSubmit = (e) => {
     e.preventDefault();
     if(state.commentVal) {
-      state.comments.push(state.commentVal); console.log(state.comments)
+      let commentArr = [...state.comments, state.commentVal]
+      setState({...state, comments: commentArr}); 
     }
   }
 
@@ -36,7 +36,7 @@ const Comment = observer(function Comment() {
     <section id='comment-container'>
       <h1>Comment</h1>
       <ul id='comments'>
-        <li>Really nice piece</li>
+        <li><p>Really nice piece</p><span>Anonymous</span></li>
       </ul>
       <form onSubmit={handleSubmit}>
         <textarea value={state.commentVal} onChange={handleChange} />

@@ -14,6 +14,10 @@ const Comment = observer(function Comment() {
   });
 
   useEffect(() => {
+    
+  }, [])
+
+  useEffect(() => {
     if(state.comments.length !== 0) {
       let li = `<li><p>${state.comments[state.comments.length - 1]}</p><span>Anonymous</span></li>`;
       document.getElementById('comments').innerHTML =  document.getElementById('comments').innerHTML + li;

@@ -23,7 +23,7 @@ const Comment = observer(function Comment() {
         });
       });
     }
-  }, [state.id]);
+  }, [state.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (state.comments.length !== 0) {

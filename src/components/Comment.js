@@ -3,6 +3,7 @@ import { Context } from '../context';
 import { observer } from 'mobx-react-lite';
 import '../assets/css/feed.css';
 import '../assets/css/comments.css';
+import firebase from '../config/firebase';
 
 const Comment = observer(function Comment() {
   const store = useContext(Context);
@@ -14,8 +15,10 @@ const Comment = observer(function Comment() {
   });
 
   useEffect(() => {
-    
-  }, [])
+    firebase.getComments(state.id).then(doc => {
+      console.log(doc.id, doc.data());
+    });
+  }, [state.id]);
 
   useEffect(() => {
     if(state.comments.length !== 0) {

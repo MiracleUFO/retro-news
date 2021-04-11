@@ -52,8 +52,6 @@ const Comment = observer(function Comment() {
     <section id="comment-container">
       <h1>Comment</h1>
       <ul id="comments">
-        <li>
-        </li>
       </ul>
       <form onSubmit={handleSubmit}>
         <textarea value={state.commentVal} onChange={handleChange} />

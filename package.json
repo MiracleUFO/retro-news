@@ -43,8 +43,5 @@
     ]
   },
   "proxy": "http://localhost:5000",
-  "plugins": [
-    "transform-decorators-legacy",
-    "transform-class-properties"
-  ]
+  "devDependencies": {}
 }

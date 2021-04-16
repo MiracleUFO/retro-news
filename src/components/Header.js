@@ -34,15 +34,22 @@ const Header = () => {
       </nav> 
 
       {state.burgerOpen ?  
-				<div id='burger-container'>
-					<div className='burger flex-column'>
+				
+	<div id='burger-container'>
+					
+	  <div className='burger flex-column' onClick={(e) => {
+            setState({...state, burgerOpen: false});
+            document.getElementsByTagName('body')[0].style.overflowY = 'visible';
+          }}>
             <NavLink to='/null'><h1>LATEST</h1></NavLink>
             <NavLink to='/null'><h1>FEATURED</h1></NavLink>
             <NavLink to='/null'><h1>TRENDING</h1></NavLink>
             <NavLink to='/null'><h1>MUST READ</h1></NavLink>
             <NavLink to='/null'><h1>SUBSCRIBE</h1></NavLink>
             <NavLink to='/null'><h1>CONTACT</h1></NavLink>  
-					</div>
+					
+	  </div>
+      
         </div> :
         null
       }

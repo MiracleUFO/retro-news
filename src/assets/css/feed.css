@@ -84,15 +84,11 @@ aside {
   align-items: center;
 }
 
-#preloader {
-  position: relative;
-  left: 5vw;
-}
+
 
 @media screen and (min-width: 750px) {
-  #preloader {
-    left: 0;
-  }
+  
+
 
   #home {
     display: grid;

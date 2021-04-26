@@ -87,6 +87,10 @@ aside {
   position: relative;
 }
 
+.publication-deets h2, .publication-deets p {
+  margin: 0 !important;
+}
+
 .secondary-feed {
   margin-bottom: 5vh;
 }

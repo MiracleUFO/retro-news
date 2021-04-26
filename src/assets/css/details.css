@@ -9,7 +9,6 @@
 
 .details p {
   font-family: 'Nunito';
-  padding-bottom: 35px;
 }
 
 .details-container {
@@ -24,6 +23,10 @@
 #article-body img {
   width: 100%;
   max-height: 350px;
+}
+
+#article-body > p {
+  padding-bottom: 35px;
 }
 
 #comment-icon {
@@ -47,6 +50,10 @@ figcaption {
   padding-bottom: 20px;
 }
 
+.details .publication-deets h2, .details .publication-deets p {
+  margin: 0 !important;
+}
+
 @media screen and (min-width: 750px) {
   #article-body {
     text-align: left;
@@ -68,6 +75,10 @@ figcaption {
   
   .details h1, .details h2, .details p {
     margin: 1.5vh 10% 1.5vw !important;
+  }
+
+ .publication-deets > div h2, .publication-deets > div p {
+    margin: 0 !important;
   }
 
   #comment-icon {

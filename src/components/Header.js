@@ -15,7 +15,10 @@ const Header = () => {
   return (
     <header>
       <nav id='primary-header'>
-        <NavLink to='/'><h1>RETRO NEWS</h1></NavLink>
+        <NavLink to='/' onClick={(e) => {
+            setState({...state, burgerOpen: false});
+            document.getElementsByTagName('body')[0].style.overflowY = 'visible';
+         }}><h1>RETRO NEWS</h1></NavLink>
         
         <div id='menu-container'>
           {state.burgerOpen ? 
@@ -47,7 +50,9 @@ const Header = () => {
             <NavLink to='/null'><h1>MUST READ</h1></NavLink>
             <NavLink to='/null'><h1>SUBSCRIBE</h1></NavLink>
             <NavLink to='/null'><h1>CONTACT</h1></NavLink>  
-					</div>
+					
+	  </div>
+      
         </div> :
         null
       }

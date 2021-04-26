@@ -6,6 +6,7 @@ import AsideLeft from './AsideLeft';
 import AsideRight from './AsideRight';
 import Comment from './Comment';
 import logo  from '../assets/imgs/logo.png';
+import commentIcon from '../assets/imgs/comments.jpeg';
 import comment from '../assets/imgs/comment.png';
 import '../assets/css/feed.css';
 import '../assets/css/details.css';
@@ -44,7 +45,7 @@ const Details = observer(function Details() {
           <Comment />
         </div>
 
-        <a href ='#comment-container'><img src={comment} alt='Comment' id='comment-icon' /></a>
+        <a href ='#comment-container'><img src={commentIcon} alt='Comment' id='comment-icon' /></a>
       </section>
       :
       <NotFound />

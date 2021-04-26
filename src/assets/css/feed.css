@@ -83,7 +83,6 @@ aside {
   align-items: center;
 }
 
-<<<<<<< HEAD
 #preloader {
   position: relative;
 }
@@ -119,13 +118,6 @@ aside {
   #preloader {
     left: 0vw;
   }
-=======
-
-
-@media screen and (min-width: 750px) {
-  
-
->>>>>>> 7243484499e6c2065ed35a1962117a731360af8a
 
   #home {
     display: grid;
@@ -235,12 +227,8 @@ aside {
   .publication-deets p {
     font-size: 1vw !important;
   }
-<<<<<<< HEAD
 
   .secondary-feed {
     display: none;
   }
 }
-=======
-}
->>>>>>> 7243484499e6c2065ed35a1962117a731360af8a

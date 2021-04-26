@@ -86,12 +86,38 @@ aside {
 
 #preloader {
   position: relative;
-  left: 5vw;
+}
+
+.secondary-feed {
+  margin-bottom: 5vh;
+}
+
+.secondary-feed a {
+  display: flex;
+  width: 90vw;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.secondary-feed img {
+  width: 40%;
+  max-height: 100px;
+  padding-right: 5%;
+}
+
+.secondary-feed h1 {
+  text-align: center;
+  font: 900 6.5vw 'Montserrat';
+}
+
+.secondary-feed h2 {
+  font-size: 1.09em;
 }
 
 @media screen and (min-width: 750px) {
   #preloader {
-    left: 0;
+    left: 0vw;
   }
 
   #home {
@@ -201,5 +227,9 @@ aside {
 
   .publication-deets p {
     font-size: 1vw !important;
+  }
+
+  .secondary-feed {
+    display: none;
   }
 }

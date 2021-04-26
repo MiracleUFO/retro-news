@@ -9,13 +9,12 @@ import logo  from '../assets/imgs/logo.png';
 import preloader from '../assets/imgs/preloader.gif';
 import '../assets/css/feed.css';
 
-
 const Feed = observer(function Feed() {
   const store = useContext(Context);
 
   const [state, setState] = useState({
     loading: true,
-    articles: []
+    articles: [],
   })
 
   useEffect(() => {
@@ -31,14 +30,15 @@ const Feed = observer(function Feed() {
         return;
       }
       response.json().then((data) => {
-        setState({...state, articles: [...data.response.results], loading: false});
         store.addArticles(data.response.results);
+        setState({...state, articles: [...data.response.results], loading: false});
       });
     })
     .catch((err) => {
       console.log(`Fetch Error: ${err}`);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   let handleClick = (e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ const Feed = observer(function Feed() {
   return (
     <main id={state.loading ? 'flex' : 'home'}>
       {state.loading ? <img src={preloader} id='preloader' alt='Spinning wheel preloader' /> : null}
-      {state.loading ? null : <AsideLeft />} 
+      {state.loading ? null : <AsideLeft loading={state.loading} />} 
       
       {state.loading ? null :
       <Splide id='feed'
@@ -69,17 +69,17 @@ const Feed = observer(function Feed() {
         {state.articles.map((item, index) => {
           let str = item.webPublicationDate.split('T')[0];
           return (
-            <SplideSlide key={index}>
-              <div data-attribute-index={index} onClick={handleClick}>
-              <NavLink to='/Details'>
+            <SplideSlide key={index} data-attribute-index={index}>              
+            <div onClick={handleClick} data-attribute-index={index}>
+              <NavLink to='/Details' data-attribute-index={index}>
                 <img src={item.fields.thumbnail} className='news-thumbnail' alt='News thumbnail' data-attribute-index={index} />
-                {index <= 5 ? <h2 className='pink-heading' data-attribute-index={index}>LATEST</h2> : null}
+                {index <= 5 ? <h2 className='pink-heading'>LATEST</h2> : null}
                 <h1 data-attribute-index={index}>{item.fields.headline}</h1>
-                <p data-attribute-index={index}>{item.fields.trailText}... <span className='greyText'data-attribute-index={index}>see more</span></p>
+                <p data-attribute-index={index}>{item.fields.trailText}... <span className='greyText'>see more</span></p>
                 
 
                 <div className='publication-deets' data-attribute-index={index}>
-                  <img src={logo} alt='Author' data-attribute-index={index} />
+                  <img src={logo} alt='Author' data-attribute-index={index}/>
                   <div data-attribute-index={index}>
                     <h2 data-attribute-index={index}>TheObserver</h2>
                     <p data-attribute-index={index}>{str}</p>
@@ -91,7 +91,26 @@ const Feed = observer(function Feed() {
           ) ;
         })}
       </Splide>}
-      {state.loading ? null : <AsideRight />}
+
+      {state.loading ? null :
+      <section className='secondary-feed'>
+        <h1>Latest stories</h1>
+        {state.articles.map((item, index) => {
+          if (index <= 5) {
+            return (
+              <div key={index} data-attribute-index={index} onClick={handleClick}>
+                <NavLink to='/Details' data-attribute-index={index}>
+                  <img src={item.fields.thumbnail} alt='Latest story' data-attribute-index={index} />
+                  <h2 data-attribute-index={index}>{item.fields.headline}</h2>
+                </NavLink>
+              </div>
+            )
+          } else return null
+        })}
+      </section>
+      }
+
+      {state.loading ? null : <AsideRight loading={state.loading} />}
     </main>
   )
 })

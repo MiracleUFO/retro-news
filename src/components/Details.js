@@ -19,7 +19,7 @@ const Details = observer(function Details() {
     if (store.selected.fields) {
       document.getElementById('article-body').innerHTML = store.selected.fields.body;
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }) // eslint-disable-line react-hooks/exhaustive-deps
   
 
   let str = store.selected.fields  ? store.selected.webPublicationDate.split('T')[0] : '';

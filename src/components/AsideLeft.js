@@ -11,7 +11,6 @@ const AsideLeft = observer(function Feed(props) {
     e.preventDefault();
     let index = Number(e.target.getAttribute('data-attribute-index'));
     store.setSelected(index);
-    console.log(store.selected);
   }
 
   return (

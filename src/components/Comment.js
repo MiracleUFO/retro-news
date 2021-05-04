@@ -11,8 +11,9 @@ const Comment = (props) => {
   });
 
   useEffect(() => {
+    setState({...state, comments: []});
+    document.getElementById("comments").innerHTML = null; //Removes previous comments inserted before rerender
     if (props.index !== undefined || props.index !== null) {
-      document.getElementById("comments").innerHTML = null; //Removes previous comments inserted before rerender
       
       firebase.getComments(props.index).then((data) => { //Gets & displays comments for specific news-deets
         data.forEach((comment) => {
@@ -21,7 +22,6 @@ const Comment = (props) => {
         });
       });
     }
-    console.log(props.index)
   }, [props.index]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {

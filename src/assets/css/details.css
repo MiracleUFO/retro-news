@@ -32,11 +32,6 @@
   width: 80%;
 }
 
-input {
-  width: 70%;
-  margin: 0 auto;
-}
-
 #comment-icon {
   position: fixed;
   right: 5vw;

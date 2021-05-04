@@ -9,21 +9,23 @@ const Comment = observer(function Comment() {
   const store = useContext(Context);
 
   const [state, setState] = useState({
-    id: store.index,
     comments: [],
     commentVal: ""
   });
 
+  useEffect(() => console.log(store.index))
+
   useEffect(() => {
-    if (state.id !== undefined || state.id !== null) {
-      firebase.getComments(state.id).then((data) => {
+    if (store.index !== undefined || store.index !== null) {
+      firebase.getComments(store.index).then((data) => {
         data.forEach((comment) => {
           let commentArr = [...state.comments, comment.data().comment];
           setState({ ...state, comments: commentArr, commentVal: "" });
         });
       });
     }
-  }, [state.id]); // eslint-disable-line react-hooks/exhaustive-deps
+    console.log(store.index, store.index)
+  }, [store.index]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (state.comments.length !== 0) {
@@ -43,15 +45,17 @@ const Comment = observer(function Comment() {
     if (state.commentVal) {
       let commentArr = [...state.comments, state.commentVal];
       setState({ ...state, comments: commentArr, commentVal: "" });
-      firebase.createComment({articleId: state.id, comment: state.commentVal});
+      firebase.createComment({articleId: store.index, comment: state.commentVal});
     }
   };
 
   return (
     <section id="comment-container">
       <h1>Comment</h1>
+      
       <ul id="comments">
       </ul>
+
       <form onSubmit={handleSubmit}>
         <textarea value={state.commentVal} onChange={handleChange} />
         <button className={state.commentVal ? "button-active" : ""}>

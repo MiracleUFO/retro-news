@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import '../assets/css/feed.css';
 import   { Context } from '../context';
-import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 
-const AsideRight = observer(function Feed(props) {
+const AsideRight = (props) => {
   const store = useContext(Context);
 
   let handleClick = (e) => {
@@ -40,6 +39,6 @@ const AsideRight = observer(function Feed(props) {
       </div>
     </aside>
   )
-})
+};
 
 export default AsideRight;

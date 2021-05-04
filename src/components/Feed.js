@@ -18,7 +18,7 @@ const Feed = observer(function Feed() {
   })
 
   useEffect(() => {
-    fetch("https://content.guardianapis.com/search?tag=lifeandstyle/fashion&from-date=2012-01-01&to-date=2021-04-07&order-by=newest&show-fields=all&page-size=200&api-key=4fbea54e-0e35-4618-a685-1813a4ab34b3", {
+    fetch("https://content.guardianapis.com/search?q=vintage&q=fashion&from-date=2021-05-01&order-by=newest&show-fields=all&page-size=200&api-key=4fbea54e-0e35-4618-a685-1813a4ab34b3", {
       "method": "GET",
       "headers": {
       "content-type": "application/x-www-form-urlencoded",
@@ -41,15 +41,17 @@ const Feed = observer(function Feed() {
 
 
   let handleClick = (e) => {
+
     e.preventDefault();
     let index = Number(e.target.getAttribute('data-attribute-index'));
     store.setSelected(index);
   }
 
+
   return (
     <main id={state.loading ? 'flex' : 'home'}>
       {state.loading ? <img src={preloader} id='preloader' alt='Spinning wheel preloader' /> : null}
-      {state.loading ? null : <AsideLeft loading={state.loading} />} 
+      {state.loading ? null : <AsideLeft loading={state.loading}  />} 
       
       {state.loading ? null :
       <Splide id='feed'
@@ -68,6 +70,7 @@ const Feed = observer(function Feed() {
       >
         {state.articles.map((item, index) => {
           let str = item.webPublicationDate.split('T')[0];
+
           return (
             <SplideSlide key={index} data-attribute-index={index}>              
             <div onClick={handleClick} data-attribute-index={index}>
@@ -76,8 +79,7 @@ const Feed = observer(function Feed() {
                 {index <= 5 ? <h2 className='pink-heading'>LATEST</h2> : null}
                 <h1 data-attribute-index={index}>{item.fields.headline}</h1>
                 <p data-attribute-index={index}>{item.fields.trailText}... <span className='greyText'>see more</span></p>
-                
-
+              
                 <div className='publication-deets' data-attribute-index={index}>
                   <img src={logo} alt='Author' data-attribute-index={index}/>
                   <div data-attribute-index={index}>

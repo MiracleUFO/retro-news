@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Context } from '../context';
 import { observer } from 'mobx-react-lite';
 import NotFound from './NotFound';
@@ -20,7 +20,6 @@ const Details = observer(function Details() {
       document.getElementById('article-body').innerHTML = store.selected.fields.body;
     }
   }) // eslint-disable-line react-hooks/exhaustive-deps
-  
 
   let str = store.selected.fields  ? store.selected.webPublicationDate.split('T')[0] : '';
 
@@ -41,9 +40,8 @@ const Details = observer(function Details() {
               <p>{str}</p>
             </div>
           </div>
-          <Comment />
+          <Comment index={store.index} />
         </div>
-
         <a href ='#comment-container'><img src={comment} alt='Comment' id='comment-icon' /></a>
       </section>
       :

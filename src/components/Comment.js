@@ -1,31 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Context } from "../context";
-import { observer } from "mobx-react-lite";
+import React, { useState, useEffect } from "react";
 import "../assets/css/feed.css";
 import "../assets/css/comments.css";
 import firebase from "../config/firebase";
 
-const Comment = observer(function Comment() {
-  const store = useContext(Context);
+const Comment = (props) => {
 
   const [state, setState] = useState({
     comments: [],
     commentVal: ""
   });
 
-  useEffect(() => console.log(store.index))
-
   useEffect(() => {
-    if (store.index !== undefined || store.index !== null) {
-      firebase.getComments(store.index).then((data) => {
+    if (props.index !== undefined || props.index !== null) {
+      document.getElementById("comments").innerHTML = null; //Removes previous comments inserted before rerender
+      
+      firebase.getComments(props.index).then((data) => { //Gets & displays comments for specific news-deets
         data.forEach((comment) => {
           let commentArr = [...state.comments, comment.data().comment];
           setState({ ...state, comments: commentArr, commentVal: "" });
         });
       });
     }
-    console.log(store.index, store.index)
-  }, [store.index]); // eslint-disable-line react-hooks/exhaustive-deps
+    console.log(props.index)
+  }, [props.index]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (state.comments.length !== 0) {
@@ -45,17 +42,15 @@ const Comment = observer(function Comment() {
     if (state.commentVal) {
       let commentArr = [...state.comments, state.commentVal];
       setState({ ...state, comments: commentArr, commentVal: "" });
-      firebase.createComment({articleId: store.index, comment: state.commentVal});
+      firebase.createComment({articleId: props.index, comment: state.commentVal});
     }
   };
 
   return (
     <section id="comment-container">
       <h1>Comment</h1>
-      
       <ul id="comments">
       </ul>
-
       <form onSubmit={handleSubmit}>
         <textarea value={state.commentVal} onChange={handleChange} />
         <button className={state.commentVal ? "button-active" : ""}>
@@ -64,6 +59,6 @@ const Comment = observer(function Comment() {
       </form>
     </section>
   );
-});
+};
 
 export default Comment;

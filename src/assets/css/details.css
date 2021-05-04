@@ -27,6 +27,14 @@
 
 #article-body > p {
   padding-bottom: 35px;
+  text-align: center;
+  margin: 0 auto !important;
+  width: 80%;
+}
+
+input {
+  width: 70%;
+  margin: 0 auto;
 }
 
 #comment-icon {
